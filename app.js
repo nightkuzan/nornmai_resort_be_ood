@@ -2,6 +2,7 @@ const express = require("express");
 const mysql = require("mysql2/promise");
 const bodyParser = require("body-parser");
 const UserController = require("./controller/roomcontroller.js");
+
 class App {
   constructor() {
     // Set up the Express app
@@ -21,7 +22,7 @@ class App {
   }
 
   setupRoutes() {
-    this.app.get("/roomid", UserController.getRoomID.bind(UserController));
+    this.app.get("/roomid", UserController.getRoomID);
     // this.app.get()
   }
 }

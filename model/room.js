@@ -1,3 +1,5 @@
+const DB = require("../db");
+
 class Room {
   constructor(
     id,
@@ -25,6 +27,10 @@ class Room {
     this.description = description;
     this.rating = rating;
     this.typeId = typeId;
+  }
+
+  static async getRoom() {
+    return DB.query("SELECT RoomID FROM roominfo");
   }
 }
 
