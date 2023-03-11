@@ -32,6 +32,18 @@ class Room {
   static async getRoom() {
     return DB.query("SELECT RoomID FROM roominfo");
   }
+
+  static async clean(roomId) {
+    return DB.query(
+      "UPDATE roominfo SET rCleaningState='Y' WHERE RoomID='" + roomId + "'"
+    );
+  }
+  
+  static async selectRoom() {
+    return DB.query(
+      "select DISTINCT ri.RoomTypeID, r.RoomTypeName, ri.rNumBed, ri.rCapacity, ri.rImage, ri.rDescription, ri.rDefaultPrice from roominfo ri left join roomtype r on ri.RoomTypeID = r.RoomTypeID"
+    );
+  }
 }
 
 module.exports = Room;

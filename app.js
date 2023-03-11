@@ -1,8 +1,7 @@
 const express = require("express");
-const mysql = require("mysql2/promise");
 const bodyParser = require("body-parser");
-const UserController = require("./controller/roomcontroller.js");
-
+const RoomController = require("./controller/roomcontroller.js");
+const UserController = require("./controller/usercontroller.js");
 class App {
   constructor() {
     // Set up the Express app
@@ -13,7 +12,6 @@ class App {
     // Set up the MySQL connection
 
     // Set up the routes
-    // this.setupRoutes();
     this.setupRoutes();
     // Start the server
     this.app.listen(3001, () => {
@@ -22,13 +20,18 @@ class App {
   }
 
   setupRoutes() {
-    this.app.get("/roomid", UserController.getRoomID);
-    // this.app.get()
+    // this.app.get("/roomid", RoomController.getRoomID);
+    this.app.get("/user-info", UserController.getUserInfo);
+    this.app.put("/room/clean", RoomController.cleanRoom);
+    // this.app.get("/room/clean", async (req, res) => {
+    //   res.send("Hello world");
+    // });
+    this.app.get("/room", RoomController.getRoom);
   }
 }
 
 async function main() {
-  const db = new App();
+  const app = new App();
 }
 
 main();
