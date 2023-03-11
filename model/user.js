@@ -14,9 +14,7 @@ class User {
 
   static async UserInfo(userId) {
     return db.query(
-      "SELECT c.ctFirstName, c.ctLastName, c.ctTel, c.ctEmail, c.ctGender, c.ctDOB, c.ctPoint, c.ctTotalConsumption FROM customerinfo c WHERE c.ctUserID='" +
-        userId +
-        "'"
+      "SELECT c.ctFirstName, c.ctLastName, c.ctTel, c.ctEmail, c.ctGender, c.ctDOB, c.ctPoint, c.ctTotalConsumption FROM customerinfo c WHERE c.ctUserID=?", [userId] 
     );
   }
 }

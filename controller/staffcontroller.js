@@ -25,6 +25,57 @@ class StaffController {
             res.status(400).json({ message: err.message });
           }
     }
+    static async addStaff(req, res) {
+        let password = req.body.password;
+        let firstname = req.body.firstname;
+        let lastname = req.body.lastname;
+        let salary = req.body.salary;
+        let email = req.body.email;
+        let phone = req.body.phone;
+        let position = req.body.position;
+
+        try{
+            if (password && email && phone) {
+                let max = 1;
+                let resp = await Staff.selectMaxid();
+                    if (resp.length > 0) {
+                      max = resp[0].maxId;
+                    }
+                    let user = "ST";
+                    for (let index = 0; index < 4 - max.toString().length; index++) {
+                      user += "0";
+                    }
+                    user += max + 1;
+                try{
+                    let data = await Staff.insertStaff(user, firstname, lastname, password, position, salary, phone, email);
+                    res.status(200).json(data);
+                } catch (err) {
+                    res.status(400).json({ message: err.message });
+                  }
+            }
+        } catch (err) {
+            res.status(400).json({ message: err.message });
+          }
+    }
+
+    static async editStaff(req, res){
+        let staffid = req.body.staffid;
+        let firstname = req.body.firstname;
+        let lastname = req.body.lastname;
+        let salary = req.body.salary;
+        let email = req.body.email;
+        let phone = req.body.phone;
+        let position = req.body.position;
+
+        if(staffid){
+            try{
+                let data = await Staff.updateStaff(staffid, firstname, lastname, position, salary, phone, email);
+                res.status(200).json(data);
+            } catch (err) {
+                res.status(400).json({ message: err.message });
+              }
+        }
+    }
 }
 
 module.exports = StaffController;

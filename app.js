@@ -3,6 +3,8 @@ const bodyParser = require("body-parser");
 const RoomController = require("./controller/roomcontroller.js");
 const UserController = require("./controller/usercontroller.js");
 const StaffController = require("./controller/staffcontroller.js");
+const BookingController = require("./controller/bookingcontroller.js");
+const PaymentController = require("./controller/paymentcontroller.js");
 
 class App {
   constructor() {
@@ -16,8 +18,8 @@ class App {
     // Set up the routes
     this.setupRoutes();
     // Start the server
-    this.app.listen(3001, () => {
-      console.log("Server started on port 3001");
+    this.app.listen(3002, () => {
+      console.log("Server started on port 3002");
     });
   }
 
@@ -30,6 +32,15 @@ class App {
     // });
     this.app.get("/room", RoomController.getRoom);
     this.app.get("/staff", StaffController.getAllStaff);
+    this.app.post("/staff/add", StaffController.addStaff);
+    this.app.put("/staff/edit", StaffController.editStaff);
+    this.app.get("/allbooking", BookingController.allBooking);
+    this.app.get("/payment", PaymentController.showPaymentinfo);
+    this.app.get("/payment-info", PaymentController.showRoomPayment);
+    this.app.post("/room-admin/create", RoomController.roomCreate);
+    this.app.get("/room-admin", RoomController.showRoomAdmin);
+    this.app.put("/room-admin/edit", RoomController.adminRoomEdit);
+    this.app.get("/room-admin/roomid", RoomController.adminRoomId);
   }
 }
 
