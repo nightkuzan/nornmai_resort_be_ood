@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const RoomController = require("./controller/roomcontroller.js");
 const UserController = require("./controller/usercontroller.js");
+const StaffController = require("./controller/staffcontroller.js");
+
 class App {
   constructor() {
     // Set up the Express app
@@ -27,6 +29,7 @@ class App {
     //   res.send("Hello world");
     // });
     this.app.get("/room", RoomController.getRoom);
+    this.app.get("/staff", StaffController.getAllStaff);
   }
 }
 
