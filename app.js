@@ -47,6 +47,10 @@ class App {
     this.app.post("/login-admin", StaffController.login);
     this.app.get("/history", HistoryController.getBooking);
     this.app.put("/update-user", UserController.updateUser);
+    this.app.put("/check-out", BookingController.updateCheckout); //
+    this.app.post("/check-in", BookingController.updateCheckin); //
+    this.app.get("/check-info-out", BookingController.CheckinfoOut); //
+    this.app.get("/check-info", BookingController.CheckInfo); //
   }
 }
 

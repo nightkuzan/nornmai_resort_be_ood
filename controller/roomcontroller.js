@@ -89,7 +89,7 @@ class RoomController {
         RoomPrice,
         RoomImage,
         RoomDetail);
-      res.status(200).json(data);
+      res.status(200)
     } catch (err) {
       res.status(400).json({ message: err.message });
     }
@@ -151,7 +151,13 @@ class RoomController {
         rImage,
         rDescription,
         rDefaultRoomID);
-      res.status(200).json(data);
+        if (error) {
+          console.log(error);
+        }
+  
+        if (results) {
+          res.status(200)
+        }
     } catch (err) {
       res.status(400).json({ message: err.message });
     }

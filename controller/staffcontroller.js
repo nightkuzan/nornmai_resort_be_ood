@@ -34,37 +34,33 @@ class StaffController {
     let phone = req.body.phone;
     let position = req.body.position;
 
-    try {
       if (password && email && phone) {
         let max = 1;
-        let resp = await Staff.selectMaxid();
-        if (resp.length > 0) {
-          max = resp[0].maxId;
-        }
-        let user = "ST";
-        for (let index = 0; index < 4 - max.toString().length; index++) {
-          user += "0";
-        }
-        user += max + 1;
-        try {
-          let data = await Staff.insertStaff(
-            user,
-            firstname,
-            lastname,
-            password,
-            position,
-            salary,
-            phone,
-            email
-          );
-          res.status(200).json(data);
+        try{
+          let data = await Staff.selectMaxid();
+          if (data.length > 0) {
+            max = data[0].maxId;
+          }
+          let user = "ST";
+          for (let index = 0; index < 4 - max.toString().length; index++) {
+            user += "0";
+          }
+          user += max + 1;
+          try{
+            let data1 = await Staff.insertStaff(user, firstname, lastname, password, position, salary, phone, email);
+            if (error) {
+              throw error;
+            } else {
+              res.status(201);
+            }
+          } catch (err) {
+            res.status(400).json({ message: err.message });
+          }
         } catch (err) {
           res.status(400).json({ message: err.message });
         }
       }
-    } catch (err) {
-      res.status(400).json({ message: err.message });
-    }
+
   }
 
   static async editStaff(req, res) {
@@ -87,10 +83,16 @@ class StaffController {
           phone,
           email
         );
-        res.status(200).json(data);
+        if (error) {
+          throw error;
+        } else {
+          res.status(200)
+        }
       } catch (err) {
         res.status(400).json({ message: err.message });
       }
+    }else {
+      throw "error";
     }
   }
 
