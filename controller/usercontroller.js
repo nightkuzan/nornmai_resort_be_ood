@@ -47,7 +47,7 @@ class UserController {
           };
           dataResult.push(body);
         }
-        res.status(200).json(dataResult);
+        res.status(200).send(dataResult);
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
@@ -55,8 +55,8 @@ class UserController {
   }
 
   static async login(req, res) {
-    let email = request.body.email;
-    let password = request.body.password;
+    let email = req.body.email;
+    let password = req.body.password;
 
     if (email && password) {
       try {
@@ -69,15 +69,36 @@ class UserController {
             mbTypeID: data[0].mbTypeID,
             mbTypeName: data[0].mbTypeName,
           };
-          response.status(200).json(body);
+          res.status(200).json(body);
         } else {
-          response.status(404);
+          res.status(404);
         }
       } catch (err) {
         res.status(400).json({ message: err.message });
       }
     } else {
       throw error;
+    }
+  }
+
+  static async updateUser(req, res) {
+    let firstname = req.body.firstname;
+    let lastname = req.body.lastname;
+    let dob = req.body.dob;
+    let gender = req.body.gender;
+    let userid = req.body.userid;
+
+    if (userid) {
+      try {
+        let data = await User.update(firstname, lastname, dob, gender, userid);
+        res.status(200).send({
+          userid: userid,
+        });
+      } catch (err) {
+        res.status(400).json({ message: err.message });
+      }
+    } else {
+      throw "error";
     }
   }
 }

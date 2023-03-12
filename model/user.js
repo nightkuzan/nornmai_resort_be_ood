@@ -52,6 +52,13 @@ class User {
       [email, password]
     );
   }
+
+  static async update(firstName, lastName, dob, gender, userId) {
+    return db.query(
+      "UPDATE customerinfo SET ctFirstName=?,ctLastName=?,ctGender=?,ctDOB=? WHERE ctUserID = ?",
+      [firstName, lastName, gender, dob, userId]
+    );
+  }
 }
 
 module.exports = User;
