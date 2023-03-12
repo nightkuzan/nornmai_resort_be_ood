@@ -48,6 +48,13 @@ class Staff {
       [staffId]
     );
   }
+
+  static async checkCorrect(staffId, password) {
+    return db.query(
+      "SELECT s.StaffID, s.sFirstName, s.sLastName, s.sPhoneNum, s.sMail, s.PositionID, p.pName FROM staffinfo s left join position p on p.PositionID = s.PositionID WHERE s.StaffID=? AND s.sPassword=? ",
+      [staffId, password]
+    );
+  }
 }
 
 module.exports = Staff;

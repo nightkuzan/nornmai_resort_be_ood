@@ -121,6 +121,33 @@ class StaffController {
       res.status(400).json({ message: err.message });
     }
   }
+
+  static async login(req, res) {
+    let staffid = req.body.staffid;
+    let password = req.body.password;
+
+    if (staffid && password) {
+      try {
+        let data = await Staff.checkCorrect(staffid, password);
+        if (data.length > 0) {
+          let body = {
+            StaffID: data[0].StaffID,
+            sFirstName: data[0].sFirstName,
+            sLastName: data[0].sLastName,
+            sPhoneNum: data[0].sPhoneNum,
+            sMail: data[0].sMail,
+            PositionID: data[0].PositionID,
+            pName: data[0].pName,
+          };
+          res.status(200).json(body);
+        } else {
+          res.status(404);
+        }
+      } catch (err) {
+        res.status(400).json({ message: err.message });
+      }
+    }
+  }
 }
 
 module.exports = StaffController;

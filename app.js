@@ -6,6 +6,8 @@ const StaffController = require("./controller/staffcontroller.js");
 const BookingController = require("./controller/bookingcontroller.js");
 const PaymentController = require("./controller/paymentcontroller.js");
 const RegisterController = require("./controller/registercontroller");
+const HistoryController = require("./controller/historycontroller");
+
 class App {
   constructor() {
     // Set up the Express app
@@ -42,6 +44,9 @@ class App {
     this.app.get("/customer", UserController.getAllUser);
     this.app.post("/signup", RegisterController.Signup);
     this.app.post("/login", UserController.login);
+    this.app.post("/login-admin", StaffController.login);
+    this.app.get("/history", HistoryController.getBooking);
+    this.app.put("/update-user", UserController.updateUser);
   }
 }
 
