@@ -5,7 +5,7 @@ const UserController = require("./controller/usercontroller.js");
 const StaffController = require("./controller/staffcontroller.js");
 const BookingController = require("./controller/bookingcontroller.js");
 const PaymentController = require("./controller/paymentcontroller.js");
-
+const RegisterController = require("./controller/registercontroller");
 class App {
   constructor() {
     // Set up the Express app
@@ -27,9 +27,6 @@ class App {
     // this.app.get("/roomid", RoomController.getRoomID);
     this.app.get("/user-info", UserController.getUserInfo);
     this.app.put("/room/clean", RoomController.cleanRoom);
-    // this.app.get("/room/clean", async (req, res) => {
-    //   res.send("Hello world");
-    // });
     this.app.get("/room", RoomController.getRoom);
     this.app.get("/staff", StaffController.getAllStaff);
     this.app.post("/staff/add", StaffController.addStaff);
@@ -41,6 +38,10 @@ class App {
     this.app.get("/room-admin", RoomController.showRoomAdmin);
     this.app.put("/room-admin/edit", RoomController.adminRoomEdit);
     this.app.get("/room-admin/roomid", RoomController.adminRoomId);
+    this.app.get("/staff-info", StaffController.getStaff);
+    this.app.get("/customer", UserController.getAllUser);
+    this.app.post("/signup", RegisterController.Signup);
+    this.app.post("/login", UserController.login);
   }
 }
 
