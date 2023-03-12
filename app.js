@@ -55,7 +55,10 @@ class App {
     this.app.put("/check-out", BookingController.updateCheckout); //
     this.app.post("/check-in", BookingController.updateCheckin); //
     this.app.get("/check-info-out", BookingController.CheckinfoOut); //
-    this.app.get("/check-info", BookingController.CheckInfo); //
+    this.app.get("/check-info", BookingController.CheckInfo);
+    this.app.get("/review-cancel-info", BookingController.reviewCaneclInfo);
+    this.app.put("/update-reason-cancel", BookingController.cancelBooking); //
+    this.app.get("/reason", BookingController.getReason);
   }
 }
 

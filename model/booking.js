@@ -81,6 +81,26 @@ class Booking {
       [results]
     );
   }
+
+  static async selectCancel(bookingid) {
+    return db.query(
+      "SELECT DISTINCT b.bkCheckInDate, b.bkLeaveDate, rt.RoomTypeName, b.bkTotalPrice, b.dcCode, b.bkpointDiscount, cn.RoomID FROM bookinginfo b left join roomtype rt on b.RoomTypeID = rt.RoomTypeID left join checkinfo cn on b.BookingID = cn.BookingID WHERE b.BookingID=?",
+      [bookingid]
+    );
+  }
+
+  static async updateCancel(reason, bookingId) {
+    return db.query(
+      "UPDATE bookinginfo SET bkReason=?, bkStatus=? WHERE BookingID = ?",
+      [reason, "Cancel", bookingId]
+    );
+  }
+
+  static async selectReason(userid) {
+    return db.query(
+      "SELECT b.bkReason FROM bookinginfo b where b.ctUserID ='" + userid + "'"
+    );
+  }
 }
 
 module.exports = Booking;

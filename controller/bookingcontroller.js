@@ -196,6 +196,69 @@ class BookingController {
       res.status(400).json({ message: err.message });
     }
   }
+
+  static async reviewCaneclInfo(req, res) {
+    let bookingid = req.query.bookingid;
+    let ResultData = [];
+
+    try {
+      let data = await Booking.selectCancel(bookingid);
+      if (data.length > 0) {
+        for (let i = 0; i < data.length; i++) {
+          let body = {
+            checkin: data[i].bkCheckInDate,
+            checkout: data[i].bkLeaveDate,
+            roomType: data[i].RoomTypeName,
+            roomPrice: data[i].bkTotalPrice,
+            dcCode: data[i].dcCode,
+            usePoint: data[i].bkpointDiscount,
+            roomid: data[0].RoomID,
+          };
+          ResultData.push(body);
+        }
+        res.status(200).send(ResultData[0]);
+      } else {
+        res.status(200).send({});
+      }
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  }
+
+  static async cancelBooking(req, res) {
+    let reason = req.body.reason;
+    let bookingid = req.body.bookingid;
+    let userid = req.body.userid;
+
+    if (userid) {
+      try {
+        let update = await Booking.updateCancel(reason, bookingid);
+
+        res.status(200).send({
+          bookingid: bookingid,
+        });
+      } catch (err) {
+        res.status(400).json({ message: err.message });
+      }
+    }
+  }
+
+  static async getReason(req, res) {
+    let userid = req.query.userid;
+    try {
+      let data = await Booking.selectReason(userid);
+      if (data.length > 0) {
+        let body = {
+          bkReason: data[0].bkReason,
+        };
+        res.status(200).send(body);
+      } else {
+        res.status(400).send({ message: "empty data" });
+      }
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  }
 }
 
 module.exports = BookingController;
