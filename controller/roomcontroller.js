@@ -124,7 +124,7 @@ class RoomController {
           };
           dataResult.push(body);
         }
-        res.status(200).json(results);
+        res.status(200).json(dataResult);
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
