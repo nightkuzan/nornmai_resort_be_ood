@@ -1,7 +1,9 @@
 const Booking = require('../model/booking');
 
 class BookingController {
-    constructor(){}
+    constructor(){
+
+    }
 
     static async allBooking(req, res){
         try{
@@ -31,7 +33,8 @@ class BookingController {
                   dataResult.push(body);
                 }
                 res.status(201).json(dataResult);
-              }
+              } else {
+                response.status(404); }
         } catch (err) {
             res.status(400).json({ message: err.message });
           }

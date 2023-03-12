@@ -80,6 +80,7 @@ class UserController {
       throw error;
     }
   }
+
 }
 
 module.exports = UserController;
