@@ -79,8 +79,10 @@ class RoomController {
     }
     if (RoomTypeName == "Superior Room") {
       RoomTypeID = "R00003";
-    } try {
-      let data = await Room.insertRoom(RoomID,
+    }
+    try {
+      let data = await Room.insertRoom(
+        RoomID,
         RoomTypeID,
         RoomFloor,
         RoomBed,
@@ -88,7 +90,8 @@ class RoomController {
         RoomSize,
         RoomPrice,
         RoomImage,
-        RoomDetail);
+        RoomDetail
+      );
       res.status(200).json(data);
     } catch (err) {
       res.status(400).json({ message: err.message });
@@ -101,7 +104,7 @@ class RoomController {
     }
   }
 
-  static async showRoomAdmin(req, res){
+  static async showRoomAdmin(req, res) {
     try {
       let results = await Room.getRoomAdmin();
       let dataResult = [];
@@ -131,7 +134,7 @@ class RoomController {
     }
   }
 
-  static async adminRoomEdit(req, res){
+  static async adminRoomEdit(req, res) {
     let roomID = req.body.RoomID;
     let roomName = req.body.RoomTypeName;
     let rfloor = req.body.rfloor;
@@ -150,7 +153,8 @@ class RoomController {
         rDefaultPrice,
         rImage,
         rDescription,
-        rDefaultRoomID);
+        rDefaultRoomID
+      );
       res.status(200).json(data);
     } catch (err) {
       res.status(400).json({ message: err.message });
@@ -159,11 +163,28 @@ class RoomController {
 
   static async adminRoomId(req, res) {
     let roomID = req.query.roomId;
-    try{
+    try {
       let data = await Room.getRoomId(roomID);
       res.status(200).json(data);
     } catch (err) {
       res.status(400).json({ message: err.message });
+    }
+  }
+
+  static async removeRoom(req, res) {
+    let roomID = req.body.RoomID;
+    let roomTypeID = req.body.RoomTypeID;
+    if (roomID) {
+      try {
+        let del = await Room.deleteRoom(roomID);
+        try {
+          let upd = await Room.updateDecrease(roomTypeID);
+        } catch (err) {
+          res.status(400).json({ message: err.message });
+        }
+      } catch (err) {
+        res.status(400).json({ message: err.message });
+      }
     }
   }
 }

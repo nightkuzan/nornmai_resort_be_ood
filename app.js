@@ -7,6 +7,7 @@ const BookingController = require("./controller/bookingcontroller.js");
 const PaymentController = require("./controller/paymentcontroller.js");
 const RegisterController = require("./controller/registercontroller");
 const HistoryController = require("./controller/historycontroller");
+const ReviewController = require("./controller/reviewcontroller");
 
 class App {
   constructor() {
@@ -47,6 +48,10 @@ class App {
     this.app.post("/login-admin", StaffController.login);
     this.app.get("/history", HistoryController.getBooking);
     this.app.put("/update-user", UserController.updateUser);
+    this.app.get("/room-booking", BookingController.selectBooking);
+    this.app.post("/review-room", ReviewController.addReview);
+    this.app.delete("/room", RoomController.removeRoom);
+    this.app.get("/user-point", UserController.getUserPoint);
   }
 }
 

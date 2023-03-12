@@ -15,6 +15,16 @@ class Booking {
         "' order by b.BookingID desc"
     );
   }
+
+  static async selectOneBooking(userId, bookingId) {
+    return db.query(
+      "SELECT b.BookingID, r.RoomTypeID, r.RoomTypeName, b.bkCheckInDate, b.bkLeaveDate, b.dcCode, b.bkpointDiscount, b.bkTotalPrice, b.bkGetPoint, b.bkReason, b.bkStatus, c.cIntime, c.cOuttime, c.RoomID FROM bookinginfo b left join checkinfo c on b.BookingID = c.BookingID left join roomtype r on r.RoomTypeID = b.RoomTypeID WHERE b.ctUserID='" +
+        userId +
+        "' AND b.BookingID='" +
+        bookingId +
+        "'"
+    );
+  }
 }
 
 module.exports = Booking;

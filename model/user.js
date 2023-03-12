@@ -59,6 +59,12 @@ class User {
       [firstName, lastName, gender, dob, userId]
     );
   }
+
+  static async selectPoint(userId) {
+    return db.query(
+      "SELECT c.ctPoint FROM customerinfo c WHERE c.ctUserID='" + userId + "'"
+    );
+  }
 }
 
 module.exports = User;

@@ -101,6 +101,23 @@ class UserController {
       throw "error";
     }
   }
+
+  static async getUserPoint(req, res) {
+    let userid = req.query.userid;
+    try {
+      let data = await User.selectPoint(userid);
+      if (data.length > 0) {
+        let body = {
+          ctPoint: data[0].ctPoint,
+        };
+        res.status(200).send(body);
+      } else {
+        res.status(400);
+      }
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  }
 }
 
 module.exports = UserController;
