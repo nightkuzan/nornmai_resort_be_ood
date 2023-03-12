@@ -8,6 +8,8 @@ const PaymentController = require("./controller/paymentcontroller.js");
 const RegisterController = require("./controller/registercontroller");
 const HistoryController = require("./controller/historycontroller");
 const ReviewController = require("./controller/reviewcontroller");
+const CheckinoutController = require("./controller/checkinoutcontroller");
+const DiscountController = require("./controller/discountcontroller");
 
 class App {
   constructor() {
@@ -31,16 +33,16 @@ class App {
     this.app.get("/user-info", UserController.getUserInfo);
     this.app.put("/room/clean", RoomController.cleanRoom);
     this.app.get("/room", RoomController.getRoom);
-    this.app.get("/staff", StaffController.getAllStaff);
-    this.app.post("/staff/add", StaffController.addStaff);
-    this.app.put("/staff/edit", StaffController.editStaff);
-    this.app.get("/allbooking", BookingController.allBooking);
-    this.app.get("/payment", PaymentController.showPaymentinfo);
-    this.app.get("/payment-info", PaymentController.showRoomPayment);
-    this.app.post("/room-admin/create", RoomController.roomCreate);
-    this.app.get("/room-admin", RoomController.showRoomAdmin);
-    this.app.put("/room-admin/edit", RoomController.adminRoomEdit);
-    this.app.get("/room-admin/roomid", RoomController.adminRoomId);
+    this.app.get("/staff", StaffController.getAllStaff);//
+    this.app.post("/staff/add", StaffController.addStaff);//
+    this.app.put("/staff/edit", StaffController.editStaff);//
+    this.app.get("/allbooking", BookingController.allBooking);//
+    this.app.get("/payment", PaymentController.showPaymentinfo);//
+    this.app.get("/payment-info", PaymentController.showRoomPayment);//
+    this.app.post("/room-admin/create", RoomController.roomCreate);//
+    this.app.get("/room-admin", RoomController.showRoomAdmin);//
+    this.app.put("/room-admin/edit", RoomController.adminRoomEdit);//
+    this.app.get("/room-admin/roomid", RoomController.adminRoomId);//
     this.app.get("/staff-info", StaffController.getStaff);
     this.app.get("/customer", UserController.getAllUser);
     this.app.post("/signup", RegisterController.Signup);
@@ -52,10 +54,12 @@ class App {
     this.app.post("/review-room", ReviewController.addReview);
     this.app.delete("/room", RoomController.removeRoom);
     this.app.get("/user-point", UserController.getUserPoint);
-    this.app.put("/check-out", BookingController.updateCheckout); //
-    this.app.post("/check-in", BookingController.updateCheckin); //
-    this.app.get("/check-info-out", BookingController.CheckinfoOut); //
-    this.app.get("/check-info", BookingController.CheckInfo); //
+    this.app.put("/check-out", CheckinoutController.updateCheckout); //
+    this.app.post("/check-in", CheckinoutController.updateCheckin); //
+    this.app.get("/check-info-out", CheckinoutController.CheckinfoOut); //
+    this.app.get("/check-info", CheckinoutController.CheckInfo); //
+    this.app.get("/check", CheckinoutController.inOutCheck); //
+    // this.app.get("/discount", DiscountController.discountSelect); // query แตก
   }
 }
 
