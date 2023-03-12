@@ -46,7 +46,7 @@ class PaymentController {
                     };
                     dataResult.push(body);
                 }
-                res.status(200).json(data);
+                res.status(200).json(dataResult);
             }
         } catch (err) {
             res.status(400).json({ message: err.message });
@@ -82,7 +82,7 @@ class PaymentController {
                   };
                   dataResult.push(body);
                 }
-                res.status(200).json(results);
+                res.status(200).json(dataResult);
               }
         } catch (err) {
             res.status(400).json({ message: err.message });

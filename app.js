@@ -52,6 +52,10 @@ class App {
     this.app.post("/review-room", ReviewController.addReview);
     this.app.delete("/room", RoomController.removeRoom);
     this.app.get("/user-point", UserController.getUserPoint);
+    this.app.put("/check-out", BookingController.updateCheckout); //
+    this.app.post("/check-in", BookingController.updateCheckin); //
+    this.app.get("/check-info-out", BookingController.CheckinfoOut); //
+    this.app.get("/check-info", BookingController.CheckInfo); //
   }
 }
 
