@@ -49,14 +49,14 @@ class App {
     this.app.get("/room-admin/roomid", RoomController.adminRoomId);//
     this.app.get("/staff-info", StaffController.getStaff);
     this.app.get("/customer", UserController.getAllUser);
-    this.app.post("/signup", RegisterController.Signup);
-    this.app.post("/login", UserController.login);
+    this.app.post("/signup", RegisterController.Signup); //pass
+    this.app.post("/login", UserController.login); //pass
     this.app.post("/login-admin", StaffController.login);
-    this.app.get("/history", HistoryController.getBooking);
+    this.app.get("/history", HistoryController.getBooking); //pass
     this.app.put("/update-user", UserController.updateUser);
     this.app.get("/room-booking", BookingController.selectBooking);
-    this.app.post("/review-room", ReviewController.addReview);
-    this.app.delete("/room", RoomController.removeRoom);
+    this.app.post("/review-room", ReviewController.addReview); //pass
+    this.app.delete("/room", RoomController.removeRoom); //pass
     this.app.get("/user-point", UserController.getUserPoint);
     this.app.put("/check-out", CheckinoutController.updateCheckout); //
     this.app.post("/check-in", CheckinoutController.updateCheckin); //
@@ -71,7 +71,7 @@ class App {
     this.app.post("/discount-info", DiscountController.discountPost); //
     this.app.get("/discount-info", DiscountController.discountInfo); //
     this.app.post("/discount/add", DiscountController.discountAdd); //
-    this.app.delete("/cancel-room", HistoryController.cancelRoom);//
+    this.app.delete("/cancel-room", HistoryController.cancelRoom);// pass
   }
 }
 
