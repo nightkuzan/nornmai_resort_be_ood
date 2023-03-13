@@ -76,7 +76,8 @@ class App {
     this.app.post("/discount-info", DiscountController.discountPost); //
     this.app.get("/discount-info", DiscountController.discountInfo); //
     this.app.post("/discount/add", DiscountController.discountAdd); //
-    this.app.delete("/cancel-room", HistoryController.cancelRoom);//
+    this.app.delete("/cancel-room", HistoryController.cancelRoom); //
+    this.app.post("/reserve", ReserveController.createReserve);
   }
 }
 

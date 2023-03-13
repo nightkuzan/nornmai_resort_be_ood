@@ -133,6 +133,39 @@ class Booking {
         "'"
     );
   }
+
+  static async createBooking(
+    userid,
+    checkin,
+    checkout,
+    numPeople,
+    pointDiscount,
+    totalPrice,
+    dcCode,
+    depositPrice,
+    point,
+    roomType,
+    roomID,
+    transferimg
+  ) {
+    return db.query(
+      "INSERT INTO `bookinginfo`(`ctUserID`, `bkCheckInDate`, `bkLeaveDate`, `bkNumPeople`, `bkpointDiscount`, `bkTotalPrice`, `dcCode`, `bkDeposit`, `bkStatus`, `bkGetPoint`, `RoomTypeID`,`RoomID`,`bkTransfer`) VALUES (?,?,?,?,?,?,?,?,'NOT PAID',?,?,?,?)",
+      [
+        userid,
+        checkin,
+        checkout,
+        numPeople,
+        pointDiscount,
+        totalPrice,
+        dcCode,
+        depositPrice,
+        point,
+        roomType,
+        roomID,
+        transferimg,
+      ]
+    );
+  }
 }
 
 module.exports = Booking;

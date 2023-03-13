@@ -86,6 +86,13 @@ class User {
       [rank, userid]
     );
   }
+
+  static async addPointFromReserve(pointDiscount, userid) {
+    return db.query(
+      "UPDATE `customerinfo` SET `ctPoint`=`ctPoint`-? WHERE ctUserID=?",
+      [pointDiscount, userid]
+    );
+  }
 }
 
 module.exports = User;
