@@ -32,13 +32,6 @@ class Booking {
     );
   }
 
-  static async cleanStatus(room) {
-    return db.query(
-      "UPDATE roominfo SET rStatus= 'Empty', rCleaningState = 'N' WHERE RoomID = ?",
-      [room]
-    );
-  }
-
   static async insertBookingData(cName, room, cInpeople, booking, staffid) {
     return db.query(
       "INSERT INTO checkinfo(cName, RoomID, cInpeople, BookingID, StaffID) VALUES (?,?,?,?,?)",
@@ -100,6 +93,13 @@ class Booking {
     return db.query(
       "SELECT b.bkReason FROM bookinginfo b where b.ctUserID ='" + userid + "'"
     );
+  }
+
+  static async updateStatus(status, booking) {
+    return db.query("UPDATE bookinginfo SET bkStatus= ? WHERE BookingID = ?", [
+      status,
+      booking,
+    ]);
   }
 }
 

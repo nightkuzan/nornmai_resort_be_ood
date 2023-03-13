@@ -65,6 +65,27 @@ class User {
       "SELECT c.ctPoint FROM customerinfo c WHERE c.ctUserID='" + userId + "'"
     );
   }
+
+  static async updatePoint(booking, userid) {
+    return db.query(
+      "UPDATE customerinfo c set c.ctPoint = c.ctPoint + (select b.bkGetPoint from bookinginfo b where b.BookingID = ?), c.ctTotalConsumption = c.ctTotalConsumption + (select b.bkTotalPrice from bookinginfo b where b.BookingID = ?) where c.ctUserID = ?",
+      [booking, booking, userid]
+    );
+  }
+
+  static async selectConsumption(userid) {
+    return db.query(
+      "select c.ctTotalConsumption from customerinfo c where c.ctUserID = ?",
+      [userid]
+    );
+  }
+
+  static async updateMembertype(userid, rank) {
+    return db.query(
+      "UPDATE customerinfo c set c.mbTypeID = ? WHERE c.ctUserID = ?",
+      [rank, userid]
+    );
+  }
 }
 
 module.exports = User;
