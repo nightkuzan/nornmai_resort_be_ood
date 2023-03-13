@@ -57,7 +57,8 @@ class UserController {
   static async login(req, res) {
     let email = req.body.email;
     let password = req.body.password;
-
+    console.log(email);
+    console.log(password);
     if (email && password) {
       try {
         let data = await User.checkCorrect(email, password);
@@ -69,9 +70,11 @@ class UserController {
             mbTypeID: data[0].mbTypeID,
             mbTypeName: data[0].mbTypeName,
           };
-          res.status(200).json(body);
+          res.send(body);
+          res.end();
         } else {
           res.status(404);
+          res.end();
         }
       } catch (err) {
         res.status(400).json({ message: err.message });

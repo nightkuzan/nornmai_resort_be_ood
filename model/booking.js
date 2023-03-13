@@ -101,6 +101,38 @@ class Booking {
       booking,
     ]);
   }
+
+  static async selectroomCancelInfo(userid, bookingid) {
+    return db.query(
+      "SELECT b.bkStatus FROM bookinginfo b WHERE b.ctUserID='" +
+        userid +
+        "' AND b.BookingID='" +
+        bookingid +
+        "'"
+    );
+  }
+
+  static async updateCancelBooking(reason, userid, bookingid) {
+    return db.query(
+      "UPDATE bookinginfo b  SET b.bkReason = '" +
+        reason +
+        "', b.bkStatus = 'CANCEL' WHERE b.ctUserID='" +
+        userid +
+        "' AND b.BookingID='" +
+        bookingid +
+        "' AND b.bkStatus = 'NOT PAID'"
+    );
+  }
+
+  static async updateCustomerInfo(bookingid, userid) {
+    return db.query(
+      "UPDATE customerinfo SET ctPoint=ctPoint+(select bkpointDiscount from bookinginfo where BookingID='" +
+        bookingid +
+        "') WHERE ctUserID='" +
+        userid +
+        "'"
+    );
+  }
 }
 
 module.exports = Booking;

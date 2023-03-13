@@ -11,20 +11,25 @@ const ReviewController = require("./controller/reviewcontroller");
 const CheckinoutController = require("./controller/checkinoutcontroller");
 const DiscountController = require("./controller/discountcontroller");
 const ReserveController = require("./controller/reservecontroller");
+const cors = require("cors");
 class App {
   constructor() {
     // Set up the Express app
     this.app = express();
     this.app.use(bodyParser.urlencoded({ extended: true }));
     this.app.use(bodyParser.json());
-
+    this.app.use(
+      cors({
+        origin: "http://localhost:3000",
+      })
+    );
     // Set up the MySQL connection
 
     // Set up the routes
     this.setupRoutes();
     // Start the server
-    this.app.listen(3002, () => {
-      console.log("Server started on port 3002");
+    this.app.listen(3001, () => {
+      console.log("Server started on port 3001");
     });
   }
 
@@ -67,6 +72,11 @@ class App {
 
     this.app.get("/reserve-room", ReserveController.reserveRoom);
     this.app.get("/reserve", ReserveController.searchRoom);
+    this.app.put("/discount", DiscountController.discountUpdate); //
+    this.app.post("/discount-info", DiscountController.discountPost); //
+    this.app.get("/discount-info", DiscountController.discountInfo); //
+    this.app.post("/discount/add", DiscountController.discountAdd); //
+    this.app.delete("/cancel-room", HistoryController.cancelRoom);//
   }
 }
 

@@ -36,6 +36,36 @@ class HistoryController {
       res.status(400).json({ message: err.message });
     }
   }
+
+  static async cancelRoom(req, res){
+    let userid = req.body.userid;
+    let bookingid = req.body.bookingid;
+    let reason = req.body.reason;
+    try{
+      let data = await Booking.selectroomCancelInfo(userid, bookingid);
+      if (data.length > 0) {
+        if (data[0].bkStatus === "NOT PAID") {
+          try{
+            let data1 = await Booking.updateCancelBooking(reason, userid, bookingid);
+            try {
+              let data2 = await Booking.updateCustomerInfo(bookingid, userid);
+              res.status(200).json({ message: "ok" });
+            } catch (err) {
+              res.status(400).json({ message: err.message });
+            }
+          } catch (err) {
+            res.status(400).json({ message: err.message });
+          }
+        } else {
+          res.status(400);
+        }
+      } else {
+        res.status(400);
+      }
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  }
 }
 
 module.exports = HistoryController;
