@@ -7,10 +7,10 @@ class CheckinoutController {
         let booking = req.body.bookingid;
         let room = req.body.room;
         try {
-            let data = await Booking.checkOut(booking);
+            let data = await CheckinOut.checkOut(booking);
             if (error) throw error;
             try {
-                let data1 = await Booking.cleanStatus(room);
+                let data1 = await CheckinOut.cleanStatus(room);
                 res.status(201);
             } catch (err) {
                 res.status(400).json({ message: err.message });
@@ -27,7 +27,7 @@ class CheckinoutController {
         let cName = req.body.cName;
         let room = req.body.room;
         try {
-            let data = await Booking.insertBookingData(
+            let data = await CheckinOut.insertBookingData(
                 cName,
                 room,
                 cInpeople,
@@ -36,7 +36,7 @@ class CheckinoutController {
             );
             if (error) throw error;
             try {
-                let data1 = await Booking.updateCheckin(room);
+                let data1 = await CheckinOut.updateCheckin(room);
                 res.status(201);
             } catch (err) {
                 res.status(400).json({ message: err.message });
@@ -49,12 +49,12 @@ class CheckinoutController {
     static async CheckinfoOut(req, res) {
         let bookingid = req.query.bookingid;
         try {
-            let data = await Booking.getCheckoutinfo(bookingid);
+            let data = await CheckinOut.getCheckoutinfo(bookingid);
             let dataResult = [];
             if (data.length > 0) {
                 for (let i = 0; i < data.length; i++) {
                     try {
-                        let data1 = await Booking.getpDate(bookingid);
+                        let data1 = await CheckinOut.getpDate(bookingid);
                         let body = {
                             RoomID: data[i].RoomID,
                             cName: data[i].cName,
@@ -83,12 +83,12 @@ class CheckinoutController {
     static async CheckInfo(req, res) {
         let booking = req.query.bookingid;
         try {
-            let data = await Booking.getInfoStatusAdmin(booking);
+            let data = await CheckinOut.getInfoStatusAdmin(booking);
             let dataResult = [];
             if (data.length > 0) {
                 for (let i = 0; i < data.length; i++) {
                     try {
-                        let data1 = await Booking.checkInfoRoom(data[i].RoomTypeID);
+                        let data1 = await CheckinOut.checkInfoRoom(data[i].RoomTypeID);
                         let roomid = [];
                         if (data1.length > 0) {
                             for (let i = 0; i < data1.length; i++) {

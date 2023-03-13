@@ -42,7 +42,7 @@ class RoomController {
           };
           dataResult.push(body);
         }
-        res.status(201).json(dataResult);
+        res.send(dataResult);
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
