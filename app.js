@@ -57,7 +57,7 @@ class App {
     this.app.get("/history", HistoryController.getBooking); //pass
     this.app.put("/update-user", UserController.updateUser);
     this.app.get("/room-booking", BookingController.selectBooking);
-    this.app.post("/review-room", ReviewController.addReview); //pass
+    this.app.post("/review-room", ReviewController.addReview); //
     this.app.delete("/room", RoomController.removeRoom); //pass
     this.app.get("/user-point", UserController.getUserPoint);
     this.app.put("/check-out", CheckinoutController.updateCheckout); //
@@ -66,7 +66,7 @@ class App {
     this.app.get("/check-info", CheckinoutController.CheckInfo); //
     this.app.get("/check", CheckinoutController.inOutCheck); //
     this.app.get("/discount", DiscountController.discountSelect); // query แตก
-    this.app.get("/review-cancel-info", BookingController.reviewCaneclInfo);
+    this.app.get("/review-cancel-info", BookingController.reviewCaneclInfo); //pass
     this.app.put("/update-reason-cancel", BookingController.cancelBooking); //
     this.app.get("/reason", BookingController.getReason);
     this.app.post("/payment", PaymentController.createPayment);

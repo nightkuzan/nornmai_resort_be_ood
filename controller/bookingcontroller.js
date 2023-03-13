@@ -31,9 +31,11 @@ class BookingController {
           dataResult.push(body);
         }
         res.status(201).send(dataResult);
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -66,11 +68,14 @@ class BookingController {
           dataResult.push(body);
         }
         res.status(200).json(dataResult[0]);
+        res.end();
       } else {
         res.status(400);
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
   static async updateCheckout(req, res) {
@@ -82,11 +87,14 @@ class BookingController {
       try {
         let data1 = await Room.checkoutRoom(room);
         res.status(201);
+        res.end();
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -108,11 +116,14 @@ class BookingController {
       try {
         let data1 = await Booking.updateCheckin(room);
         res.status(201);
+        res.end();
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -138,15 +149,19 @@ class BookingController {
             };
             dataResult.push(body);
             res.status(201).send(dataResult[0]);
+            res.end();
           } catch (err) {
             res.status(400).json({ message: err.message });
+            res.end();
           }
         }
       } else {
         res.status(200).send({});
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -187,13 +202,16 @@ class BookingController {
             };
             dataResult.push(body);
             res.status(201).send(dataResult[0]);
+            res.end();
           } catch (err) {
             res.status(400).json({ message: err.message });
+            res.end();
           }
         }
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -217,11 +235,14 @@ class BookingController {
           ResultData.push(body);
         }
         res.status(200).send(ResultData[0]);
+        res.end();
       } else {
         res.status(200).send({});
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -237,8 +258,10 @@ class BookingController {
         res.status(200).send({
           bookingid: bookingid,
         });
+        res.end();
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     }
   }
@@ -252,11 +275,14 @@ class BookingController {
           bkReason: data[0].bkReason,
         };
         res.status(200).send(body);
+        res.end();
       } else {
         res.status(400).send({ message: "empty data" });
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 }

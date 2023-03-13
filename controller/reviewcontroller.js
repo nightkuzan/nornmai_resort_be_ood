@@ -10,17 +10,20 @@ class ReviewController {
     let star = req.body.star;
     let roomid = req.body.roomid;
     let roomtype = req.body.roomtype;
-
+    console.log(req.body);
     try {
       let data = await Review.insertReview(bookingid, review, star, roomid);
       try {
         let result = await Room.updateRating(roomtype);
         res.status(200);
+        res.end();
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 }

@@ -20,9 +20,11 @@ class StaffController {
           dataResult.push(body);
         }
         res.status(201).json(dataResult);
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
   static async addStaff(req, res) {
@@ -61,12 +63,15 @@ class StaffController {
             throw error;
           } else {
             res.status(201);
+            res.end();
           }
         } catch (err) {
           res.status(400).json({ message: err.message });
+          res.end();
         }
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     }
   }
@@ -95,9 +100,11 @@ class StaffController {
           throw error;
         } else {
           res.status(200);
+          res.end();
         }
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     } else {
       throw "error";
@@ -124,11 +131,14 @@ class StaffController {
           dataResult.push(body);
         }
         res.status(200).json(dataResult[0]);
+        res.end();
       } else {
         res.status(200).json({});
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -150,11 +160,14 @@ class StaffController {
             pName: data[0].pName,
           };
           res.status(200).json(body);
+          res.end();
         } else {
           res.status(404);
+          res.end();
         }
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     }
   }

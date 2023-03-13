@@ -72,12 +72,15 @@ class ReserveController {
           dataResult.push(body);
         }
         res.send(dataResult);
+        res.end();
         // console.log(query);
       } else {
         res.status(400);
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -115,11 +118,14 @@ class ReserveController {
           let update = await User.addPointFromReserve(pointDiscount, userid);
 
           res.status(200);
+          res.end();
         } catch (err) {
           res.status(400).json({ message: err.message });
+          res.end();
         }
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     }
   }

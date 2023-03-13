@@ -29,11 +29,14 @@ class HistoryController {
           dataResult.push(body);
         }
         res.status(200).send(dataResult);
+        res.end();
       } else {
         res.status(400);
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -50,20 +53,26 @@ class HistoryController {
             try {
               let data2 = await Booking.updateCustomerInfo(bookingid, userid);
               res.status(200).json({ message: "ok" });
+              res.end();
             } catch (err) {
               res.status(400).json({ message: err.message });
+              res.end();
             }
           } catch (err) {
             res.status(400).json({ message: err.message });
+            res.end();
           }
         } else {
           res.status(400);
+          res.end();
         }
       } else {
         res.status(400);
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 }

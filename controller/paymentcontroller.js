@@ -48,9 +48,11 @@ class PaymentController {
           dataResult.push(body);
         }
         res.status(200).send(dataResult);
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -84,9 +86,11 @@ class PaymentController {
           dataResult.push(body);
         }
         res.send(dataResult[0]);
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -119,18 +123,23 @@ class PaymentController {
                 let update3 = await User.updateMembertype(userid, rank);
               } catch (err) {
                 res.status(400).json({ message: err.message });
+                res.end();
               }
             }
           } catch (err) {
             res.status(400).json({ message: err.message });
+            res.end();
           }
         }
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
       res.status(200);
+      res.end();
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 }

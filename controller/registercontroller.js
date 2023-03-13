@@ -32,11 +32,14 @@ class RegisterController {
             };
           }
           res.status(200).json(body);
+          res.end();
         } catch (err) {
           res.status(400).json({ message: err.message });
+          res.end();
         }
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     }
   }

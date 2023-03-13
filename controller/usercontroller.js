@@ -21,9 +21,11 @@ class UserController {
           ctTotalConsumption: data[0].ctTotalConsumption,
         };
         res.status(201).json(body);
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -48,9 +50,11 @@ class UserController {
           dataResult.push(body);
         }
         res.status(200).send(dataResult);
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -78,6 +82,7 @@ class UserController {
         }
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     } else {
       throw error;
@@ -97,8 +102,10 @@ class UserController {
         res.status(200).send({
           userid: userid,
         });
+        res.end();
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     } else {
       throw "error";
@@ -114,11 +121,14 @@ class UserController {
           ctPoint: data[0].ctPoint,
         };
         res.status(200).send(body);
+        res.end();
       } else {
         res.status(400);
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 }

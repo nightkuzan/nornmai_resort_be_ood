@@ -12,11 +12,14 @@ class DiscountController {
                   dcRate: data[0].dcRate,
                 };
                 res.status(200).send(body);
+                res.end();
               } else {
                 res.status(400);
+                res.end();
               }
         } catch (err) {
             res.status(400).json({ message: err.message });
+            res.end();
           }
     }
 
@@ -29,11 +32,14 @@ class DiscountController {
             dcRate: data[0].dcRate,
           };
           res.status(200).send(body);
+          res.end();
         } else {
           res.status(400);
+          res.end();
         }
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     }
 
@@ -51,8 +57,10 @@ class DiscountController {
             status: "success",
           };
           res.status(200).send(body);
+          res.end();
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     }
 
@@ -72,11 +80,14 @@ class DiscountController {
             dataResult.push(body);
           }
           res.status(200).send(dataResult);
+          res.end();
         } else {
           res.status(200).send(dataResult);
+          res.end();
         }
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     }
 
@@ -93,11 +104,14 @@ class DiscountController {
         try {
           let data = await Discount.addDiscount(dcCode, dcRate, startDate, endDate, dcAmount);
           res.status(200);
+          res.end();
         } catch (err) {
           res.status(400).json({ message: err.message });
+          res.end();
         }
       } else {
         res.status(400);
+        res.end();
       }
     }
 }

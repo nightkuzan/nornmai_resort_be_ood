@@ -7,20 +7,24 @@ class RoomController {
     try {
       const data = await Room.getRoom();
       res.status(201).json(data);
+      res.end();
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
   static async cleanRoom(req, res) {
-    let roomId = req.query.RoomID;
+    let roomId = req.body.RoomID;
 
     if (roomId) {
       try {
         data = await Room.clean(roomId);
-        res.status(201).json(data);
+        res.status(200);
+        res.end();
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     }
   }
@@ -43,9 +47,11 @@ class RoomController {
           dataResult.push(body);
         }
         res.send(dataResult);
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -92,22 +98,24 @@ class RoomController {
         RoomImage,
         RoomDetail
       );
-      res.status(200);
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
     try {
       let data = await Room.updateRoomTotal(RoomTypeName);
-      res.status(200).json(data);
+      res.status(200);
+      res.end();
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
   static async showRoomAdmin(req, res) {
+    let dataResult = [];
     try {
       let results = await Room.getRoomAdmin();
-      let dataResult = [];
       if (results.length > 0) {
         for (let i = 0; i < results.length; i++) {
           let body = {
@@ -127,10 +135,12 @@ class RoomController {
           };
           dataResult.push(body);
         }
-        res.status(200).json(dataResult);
+        res.status(200).send(dataResult);
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -144,6 +154,7 @@ class RoomController {
     let rImage = req.body.rImage;
     let rDescription = req.body.rDescription;
     let rDefaultRoomID = req.body.rDefaultRoomID;
+    console.log(req.body);
     try {
       let data = await Room.editRoomAdmin(
         roomID,
@@ -155,15 +166,13 @@ class RoomController {
         rDescription,
         rDefaultRoomID
       );
-      if (error) {
-        console.log(error);
-      }
-
-      if (results) {
+      if (data) {
         res.status(200);
+        res.end();
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -172,8 +181,10 @@ class RoomController {
     try {
       let data = await Room.getRoomId(roomID);
       res.status(200).json(data);
+      res.end();
     } catch (err) {
       res.status(400).json({ message: err.message });
+      res.end();
     }
   }
 
@@ -185,11 +196,14 @@ class RoomController {
         let del = await Room.deleteRoom(roomID);
         try {
           let upd = await Room.updateDecrease(roomTypeID);
+          res.end();
         } catch (err) {
           res.status(400).json({ message: err.message });
+          res.end();
         }
       } catch (err) {
         res.status(400).json({ message: err.message });
+        res.end();
       }
     }
   }

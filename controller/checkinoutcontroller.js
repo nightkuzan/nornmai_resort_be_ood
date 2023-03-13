@@ -8,15 +8,17 @@ class CheckinoutController {
         let room = req.body.room;
         try {
             let data = await CheckinOut.checkOut(booking);
-            if (error) throw error;
             try {
                 let data1 = await CheckinOut.cleanStatus(room);
-                res.status(201);
+                res.status(200);
+                res.end();
             } catch (err) {
                 res.status(400).json({ message: err.message });
+                res.end();
             }
         } catch (err) {
             res.status(400).json({ message: err.message });
+            res.end();
         }
     }
 
@@ -38,11 +40,14 @@ class CheckinoutController {
             try {
                 let data1 = await CheckinOut.updateCheckin(room);
                 res.status(201);
+                res.end();
             } catch (err) {
                 res.status(400).json({ message: err.message });
+                res.end();
             }
         } catch (err) {
             res.status(400).json({ message: err.message });
+            res.end();
         }
     }
 
@@ -68,15 +73,19 @@ class CheckinoutController {
                         };
                         dataResult.push(body);
                         res.status(201).send(dataResult[0]);
+                        res.end();
                     } catch (err) {
                         res.status(400).json({ message: err.message });
+                        res.end();
                     }
                 }
             } else {
                 res.status(200).send({});
+                res.end();
             }
         } catch (err) {
             res.status(400).json({ message: err.message });
+            res.end();
         }
     }
 
@@ -117,13 +126,16 @@ class CheckinoutController {
                         };
                         dataResult.push(body);
                         res.status(201).send(dataResult[0]);
+                        res.end();
                     } catch (err) {
                         res.status(400).json({ message: err.message });
+                        res.end();
                     }
                 }
             }
         } catch (err) {
             res.status(400).json({ message: err.message });
+            res.end();
         }
     }
 
@@ -173,8 +185,10 @@ class CheckinoutController {
                 }
             }
             res.status(200).send(dataResult);
+            res.end();
         } catch (err) {
             res.status(400).json({ message: err.message });
+            res.end();
         }
     }
 }
