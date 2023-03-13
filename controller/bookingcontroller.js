@@ -1,5 +1,5 @@
 const Booking = require("../model/booking");
-
+const Room = require("../model/room");
 class BookingController {
   constructor() {}
 
@@ -80,7 +80,7 @@ class BookingController {
       let data = await Booking.checkOut(booking);
       if (error) throw error;
       try {
-        let data1 = await Booking.cleanStatus(room);
+        let data1 = await Room.checkoutRoom(room);
         res.status(201);
       } catch (err) {
         res.status(400).json({ message: err.message });

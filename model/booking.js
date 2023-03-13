@@ -32,13 +32,6 @@ class Booking {
     );
   }
 
-  static async cleanStatus(room) {
-    return db.query(
-      "UPDATE roominfo SET rStatus= 'Empty', rCleaningState = 'N' WHERE RoomID = ?",
-      [room]
-    );
-  }
-
   static async insertBookingData(cName, room, cInpeople, booking, staffid) {
     return db.query(
       "INSERT INTO checkinfo(cName, RoomID, cInpeople, BookingID, StaffID) VALUES (?,?,?,?,?)",
@@ -102,30 +95,43 @@ class Booking {
     );
   }
 
-  static async selectroomCancelInfo(userid, bookingid){
-    return db.query("SELECT b.bkStatus FROM bookinginfo b WHERE b.ctUserID='" +
-    userid +
-    "' AND b.BookingID='" +
-    bookingid +
-    "'");
+  static async updateStatus(status, booking) {
+    return db.query("UPDATE bookinginfo SET bkStatus= ? WHERE BookingID = ?", [
+      status,
+      booking,
+    ]);
+  }
+
+  static async selectroomCancelInfo(userid, bookingid) {
+    return db.query(
+      "SELECT b.bkStatus FROM bookinginfo b WHERE b.ctUserID='" +
+        userid +
+        "' AND b.BookingID='" +
+        bookingid +
+        "'"
+    );
   }
 
   static async updateCancelBooking(reason, userid, bookingid) {
-    return db.query("UPDATE bookinginfo b  SET b.bkReason = '" +
-    reason +
-    "', b.bkStatus = 'CANCEL' WHERE b.ctUserID='" +
-    userid +
-    "' AND b.BookingID='" +
-    bookingid +
-    "' AND b.bkStatus = 'NOT PAID'");
+    return db.query(
+      "UPDATE bookinginfo b  SET b.bkReason = '" +
+        reason +
+        "', b.bkStatus = 'CANCEL' WHERE b.ctUserID='" +
+        userid +
+        "' AND b.BookingID='" +
+        bookingid +
+        "' AND b.bkStatus = 'NOT PAID'"
+    );
   }
 
-  static async updateCustomerInfo(bookingid, userid){
-    return db.query("UPDATE customerinfo SET ctPoint=ctPoint+(select bkpointDiscount from bookinginfo where BookingID='" +
-    bookingid +
-    "') WHERE ctUserID='" +
-    userid +
-    "'");
+  static async updateCustomerInfo(bookingid, userid) {
+    return db.query(
+      "UPDATE customerinfo SET ctPoint=ctPoint+(select bkpointDiscount from bookinginfo where BookingID='" +
+        bookingid +
+        "') WHERE ctUserID='" +
+        userid +
+        "'"
+    );
   }
 }
 
