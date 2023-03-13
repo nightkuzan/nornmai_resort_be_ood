@@ -1,6 +1,6 @@
 const db = require("../db");
 
-class Room {
+class RoomDMC {
   constructor() {}
 
   static async getRoom() {
@@ -122,4 +122,4 @@ class Room {
   }
 }
 
-module.exports = Room;
+module.exports = RoomDMC;
