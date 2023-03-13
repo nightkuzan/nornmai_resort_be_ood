@@ -1,3 +1,4 @@
+const Booking = require("../model/booking");
 const Room = require("../model/room");
 
 class ReserveController {
@@ -77,6 +78,49 @@ class ReserveController {
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
+    }
+  }
+
+  static async createReserve(req, res) {
+    let checkin = req.body.checkin;
+    let checkout = req.body.checkout;
+    let userid = req.body.userid;
+    let numPeople = req.body.numPeople;
+    let pointDiscount = req.body.pointDiscount;
+    let totalPrice = req.body.totalPrice;
+    let dcCode = req.body.dcCode;
+    let depositPrice = (totalPrice * 40) / 100;
+    let point = totalPrice / 10;
+    let roomType = req.body.roomType;
+    let roomID = req.body.roomID;
+    let transferimg = req.body.transferimg;
+
+    if (userid && roomType) {
+      try {
+        let insert = await Booking.createBooking(
+          userid,
+          checkin,
+          checkout,
+          numPeople,
+          pointDiscount,
+          totalPrice,
+          dcCode,
+          depositPrice,
+          point,
+          roomType,
+          roomID,
+          transferimg
+        );
+        try {
+          let update = await User.addPointFromReserve(pointDiscount, userid);
+
+          res.status(200);
+        } catch (err) {
+          res.status(400).json({ message: err.message });
+        }
+      } catch (err) {
+        res.status(400).json({ message: err.message });
+      }
     }
   }
 }
