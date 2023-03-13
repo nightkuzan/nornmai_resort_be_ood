@@ -1,6 +1,6 @@
 const db = require("../db");
 const DB = require("../db");
-
+const moment = require("moment");
 class Room {
   constructor(
     id,
@@ -242,6 +242,7 @@ class Room {
     query +=
       ") a GROUP by a.RoomTypeName, a.rDefaultPrice, a.rImage, a.rRating, a.rCapacity, a.RoomTypeID, a.rDescription, a.RoomID order by a.rDefaultPrice";
 
+    console.log(query);
     return db.query(query);
   }
 }

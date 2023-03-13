@@ -44,7 +44,7 @@ class ReserveController {
     let rtype = req.query.rtype;
     let rprice = req.query.rprice;
     let rcapacity = req.query.rcapacity;
-
+    console.log(req.query);
     try {
       let data = await Room.selectAvailableRoom(
         rtype,

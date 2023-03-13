@@ -12,6 +12,7 @@ const CheckinoutController = require("./controller/checkinoutcontroller");
 const DiscountController = require("./controller/discountcontroller");
 const ReserveController = require("./controller/reservecontroller");
 const cors = require("cors");
+
 class App {
   constructor() {
     // Set up the Express app
@@ -64,7 +65,7 @@ class App {
     this.app.get("/check-info-out", CheckinoutController.CheckinfoOut); //
     this.app.get("/check-info", CheckinoutController.CheckInfo); //
     this.app.get("/check", CheckinoutController.inOutCheck); //
-    // this.app.get("/discount", DiscountController.discountSelect); // query แตก
+    this.app.get("/discount", DiscountController.discountSelect); // query แตก
     this.app.get("/review-cancel-info", BookingController.reviewCaneclInfo);
     this.app.put("/update-reason-cancel", BookingController.cancelBooking); //
     this.app.get("/reason", BookingController.getReason);

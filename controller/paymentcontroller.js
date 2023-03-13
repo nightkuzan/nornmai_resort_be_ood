@@ -24,7 +24,7 @@ class PaymentController {
         "'";
     }
     try {
-      let data = await Payment.showPaymentinfo(condition);
+      let data = await Payment.showinfoPayment(condition);
       let dataResult = [];
       if (data.length > 0) {
         for (let i = 0; i < data.length; i++) {
@@ -47,7 +47,7 @@ class PaymentController {
           };
           dataResult.push(body);
         }
-        res.status(200).json(dataResult);
+        res.status(200).send(dataResult);
       }
     } catch (err) {
       res.status(400).json({ message: err.message });
@@ -83,7 +83,7 @@ class PaymentController {
           };
           dataResult.push(body);
         }
-        res.status(200).json(dataResult);
+        res.send(dataResult[0]);
       }
     } catch (err) {
       res.status(400).json({ message: err.message });

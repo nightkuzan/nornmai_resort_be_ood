@@ -4,9 +4,13 @@ class Discount {
     constructor() {}
 
     static async selectDiscount(dcCode){
-        return db.query("SELECT s.dcRate FROM seasondiscount s WHERE s.dcStartDate <= CURRENT_DATE and s.dcAmount >0  and  s.dcEndDate >= CURRENT_DATE and s.dcCode ='" +
+        return db.query("SELECT dcRate FROM seasondiscount WHERE dcCode = '" +
         dcCode +
-        "'" + "and (s.dcAmount>0 or s.dcAmount is null)");
+        "' AND (dcAmount > 0 OR dcAmount IS NULL) AND (dcStartDate <= " +
+        "CURRENT_DATE" +
+        " OR dcStartDate IS NULL) AND (dcEndDate >= " +
+        "CURRENT_DATE" +
+        " OR dcEndDate IS NULL)");
     }
 
     static async updateDiscount(dcCode){
