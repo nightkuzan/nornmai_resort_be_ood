@@ -1,4 +1,4 @@
-const Discount = require("../model/discount");
+const Discount = require("../DMC/discountDMC");
 
 class DiscountController {
     constructor(){}

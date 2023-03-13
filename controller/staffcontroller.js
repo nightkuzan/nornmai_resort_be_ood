@@ -1,4 +1,4 @@
-const Staff = require("../model/staff");
+const Staff = require("../DMC/staffDMC");
 
 class StaffController {
   constructor() {}

@@ -1,4 +1,4 @@
-const Room = require("../model/room.js");
+const Room = require("../DMC/roomDMC.js");
 
 class RoomController {
   constructor() {}
@@ -145,16 +145,16 @@ class RoomController {
   }
 
   static async adminRoomEdit(req, res) {
-    let roomID = req.body.RoomID;
-    let roomName = req.body.RoomTypeName;
-    let rfloor = req.body.rfloor;
-    let rNumbed = req.body.rNumBed;
-    let rCapacity = req.body.rCapacity;
-    let rDefaultPrice = req.body.rDefaultPrice;
-    let rImage = req.body.rImage;
-    let rDescription = req.body.rDescription;
-    let rDefaultRoomID = req.body.rDefaultRoomID;
-    console.log(req.body);
+  let roomID = req.body.RoomID;
+  let rfloor = req.body.rfloor;
+  let rNumbed = req.body.rNumBed;
+  let rCapacity = req.body.rCapacity;
+  let rDefaultPrice = req.body.rDefaultPrice;
+  let rImage = req.body.rImage;
+  let rDescription = req.body.rDescription;
+  let rDefaultRoomID = req.body.rDefaultRoomID;
+  let RoomTypeID = req.body.RoomTypeID;
+  console.log(req.body);
     try {
       let data = await Room.editRoomAdmin(
         roomID,
@@ -164,10 +164,11 @@ class RoomController {
         rDefaultPrice,
         rImage,
         rDescription,
-        rDefaultRoomID
+        RoomTypeID,
+        rDefaultRoomID,
       );
       if (data) {
-        res.status(200);
+        res.sendStatus(200);
         res.end();
       }
     } catch (err) {

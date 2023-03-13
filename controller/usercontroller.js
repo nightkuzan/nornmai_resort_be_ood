@@ -1,5 +1,5 @@
-const { allCustomer } = require("../model/user");
-const User = require("../model/user");
+const { allCustomer } = require("../DMC/userDMC");
+const User = require("../DMC/userDMC");
 
 class UserController {
   constructor() {}

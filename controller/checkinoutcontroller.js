@@ -1,4 +1,4 @@
-const CheckinOut = require("../model/checkinout");
+const CheckinOut = require("../DMC/checkinoutDMC");
 
 class CheckinoutController {
     constructor() { }

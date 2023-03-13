@@ -1,6 +1,6 @@
-const Booking = require("../model/booking");
-const Payment = require("../model/payment");
-const User = require("../model/user");
+const Booking = require("../DMC/bookingDMC");
+const Payment = require("../DMC/paymentDMC");
+const User = require("../DMC/userDMC");
 class PaymentController {
   constructor() {}
 

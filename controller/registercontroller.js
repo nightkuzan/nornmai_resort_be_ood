@@ -1,4 +1,4 @@
-const User = require("../model/user");
+const User = require("../DMC/userDMC");
 
 class RegisterController {
   constructor() {}

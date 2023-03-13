@@ -1,5 +1,5 @@
-const Review = require("../model/review");
-const Room = require("../model/room");
+const Review = require("../DMC/reviewDMC");
+const Room = require("../DMC/roomDMC");
 
 class ReviewController {
   constructor() {}

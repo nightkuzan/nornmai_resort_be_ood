@@ -1,5 +1,5 @@
-const Booking = require("../model/booking");
-const Room = require("../model/room");
+const Booking = require("../DMC/bookingDMC");
+const Room = require("../DMC/roomDMC");
 
 class ReserveController {
   constructor() {}

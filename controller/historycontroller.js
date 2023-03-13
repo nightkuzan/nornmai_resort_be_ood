@@ -1,4 +1,4 @@
-const Booking = require("../model/booking");
+const Booking = require("../DMC/bookingDMC");
 
 class HistoryController {
   constructor() {}

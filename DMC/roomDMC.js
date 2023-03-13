@@ -104,10 +104,11 @@ class Room {
     rDefaultPrice,
     rImage,
     rDescription,
-    rDefaultRoomID
+    RoomTypeID,
+    rDefaultRoomID,
   ) {
     return DB.query(
-      "UPDATE roominfo SET RoomID = ?, rfloor = ?, rNumBed = ?, rCapacity = ?, rDefaultPrice = ?, rImage = ?, rDescription = ? WHERE RoomID = ?",
+      "UPDATE roominfo SET RoomID = ?, rfloor = ?, rNumBed = ?, rCapacity = ?, rDefaultPrice = ?, rImage = ?, rDescription = ?, RoomTypeID = ? WHERE RoomID = ?",
       [
         roomID,
         rfloor,
@@ -116,6 +117,7 @@ class Room {
         rDefaultPrice,
         rImage,
         rDescription,
+        RoomTypeID,
         rDefaultRoomID,
       ]
     );
