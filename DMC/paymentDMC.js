@@ -1,6 +1,6 @@
 const db = require("../db");
 
-class Payment {
+class PaymentDMC {
   constructor() {}
   static async showinfoPayment(condition) {
     return db.query(
@@ -22,7 +22,6 @@ class Payment {
       [bookingid, amount, date, staffid]
     );
   }
-
 }
 
-module.exports = Payment;
+module.exports = PaymentDMC;

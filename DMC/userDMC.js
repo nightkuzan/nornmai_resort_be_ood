@@ -1,16 +1,7 @@
 const db = require("../db");
 
-class User {
-  constructor(firstName, lastName, tel, email, gender, dob, point, consumtion) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.tel = tel;
-    this.email = email;
-    this.gender = gender;
-    this.dob = dob;
-    this.point = point;
-    this.consumtion = consumtion;
-  }
+class UserDMC {
+  constructor() {}
 
   static async UserInfo(userId) {
     return db.query(
@@ -95,4 +86,4 @@ class User {
   }
 }
 
-module.exports = User;
+module.exports = UserDMC;

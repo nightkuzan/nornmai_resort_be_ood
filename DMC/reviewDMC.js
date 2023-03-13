@@ -1,6 +1,6 @@
 const db = require("../db");
 
-class Review {
+class ReviewDMC {
   constructor() {}
 
   static async insertReview(bookingId, review, star, roomId) {
@@ -11,4 +11,4 @@ class Review {
   }
 }
 
-module.exports = Review;
+module.exports = ReviewDMC;

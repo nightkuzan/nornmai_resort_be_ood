@@ -1,6 +1,6 @@
 const db = require("../db");
 
-class Booking {
+class BookingDMC {
   constructor() {}
   static async allBookingStaff() {
     return db.query(
@@ -168,4 +168,4 @@ class Booking {
   }
 }
 
-module.exports = Booking;
+module.exports = BookingDMC;

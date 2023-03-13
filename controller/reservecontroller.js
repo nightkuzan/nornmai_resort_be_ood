@@ -1,6 +1,6 @@
 const Booking = require("../DMC/bookingDMC");
 const Room = require("../DMC/roomDMC");
-
+const Reserve = require("../DMC/reserveDMC");
 class ReserveController {
   constructor() {}
 
@@ -14,7 +14,7 @@ class ReserveController {
     var to = new Date(checkout);
 
     try {
-      let data = await Room.getReserveRoom(from, to, type, id);
+      let data = await Reserve.getReserveRoom(from, to, type, id);
       if (data.length > 0) {
         let dataResult = [];
         for (let i = 0; i < data.length; i++) {
@@ -47,7 +47,7 @@ class ReserveController {
     let rcapacity = req.query.rcapacity;
     console.log(req.query);
     try {
-      let data = await Room.selectAvailableRoom(
+      let data = await Reserve.selectAvailableRoom(
         rtype,
         rfloor,
         rprice,

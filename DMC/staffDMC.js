@@ -1,6 +1,6 @@
 const db = require("../db");
 
-class Staff {
+class StaffDMC {
   constructor() {}
   static async allstaff() {
     return db.query(
@@ -57,4 +57,4 @@ class Staff {
   }
 }
 
-module.exports = Staff;
+module.exports = StaffDMC;
