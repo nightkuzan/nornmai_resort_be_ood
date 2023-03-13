@@ -145,15 +145,16 @@ class RoomController {
   }
 
   static async adminRoomEdit(req, res) {
-  let roomID = req.body.RoomID;
-  let rfloor = req.body.rfloor;
-  let rNumbed = req.body.rNumBed;
-  let rCapacity = req.body.rCapacity;
-  let rDefaultPrice = req.body.rDefaultPrice;
-  let rImage = req.body.rImage;
-  let rDescription = req.body.rDescription;
-  let rDefaultRoomID = req.body.rDefaultRoomID;
-  let RoomTypeID = req.body.RoomTypeID;
+    let roomID = req.body.RoomID;
+    let rfloor = req.body.rfloor;
+    let rNumbed = req.body.rNumBed;
+    let rCapacity = req.body.rCapacity;
+    let rDefaultPrice = req.body.rDefaultPrice;
+    let rImage = req.body.rImage;
+    let rDescription = req.body.rDescription;
+    let rDefaultRoomID = req.body.rDefaultRoomID;
+    let RoomTypeID = req.body.RoomTypeID;
+    let rPrice = req.body.rPrice;
   console.log(req.body);
     try {
       let data = await Room.editRoomAdmin(
@@ -161,7 +162,7 @@ class RoomController {
         rfloor,
         rNumbed,
         rCapacity,
-        rDefaultPrice,
+        rPrice,
         rImage,
         rDescription,
         RoomTypeID,
